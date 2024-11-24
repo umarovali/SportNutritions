@@ -1,11 +1,11 @@
-import React from 'react'
-import Nutritions from './modules/Nutritions'
-import PrivatePage from './layout/PrivatePage'
-
+import Nutritions from './modules/Nutritions';
+import PrivatePage from './layout/PrivatePage';
+import { Toaster } from "react-hot-toast";
 export default function App() {
   return (
-    <div className=''>
+    <>
+      <Toaster position='top-center' />
       <PrivatePage />
-    </div>
+    </>
   )
 }
