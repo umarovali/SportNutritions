@@ -4,7 +4,7 @@ import NutritionAddForm from "./components/NutritionAddForm";
 export default function NutritionsAdd() {
     return (
         <>
-            <HeaderBack />
+            <HeaderBack text={"Д"} span={"обавить"} />
             <NutritionAddForm />
         </>
     )

@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { TbListSearch } from "react-icons/tb";
-import { PiShoppingCartSimple } from "react-icons/pi";
+import { PiFootballHelmet } from "react-icons/pi";
 import { MdOutlinePersonOutline } from "react-icons/md";
-import { GiHoneyJar } from "react-icons/gi";
+import { FaBottleWater } from "react-icons/fa6";
 
 export default function Navbar() {
     const getBlockClass = (isActive) =>
@@ -25,10 +25,10 @@ export default function Navbar() {
         <nav className="w-full h-[74px] bg-white fixed left-0 bottom-0 border-t-[0.1px] border-[#CF2516] shadow-[0px_-2px_10px_0px_rgba(207,37,22,0.15)] flex items-center">
             <ul className="flex items-center w-full">
                 <li className="w-[25%] flex justify-center">
-                    <NavLink to="/" className={({ isActive }) => getBlockClass(isActive)}>
+                    <NavLink to="/nutritions" className={({ isActive }) => getBlockClass(isActive)}>
                         {({ isActive }) => (
                             <>
-                                <GiHoneyJar className={getIconClass(isActive)} />
+                                <FaBottleWater className={getIconClass(isActive)} />
                                 <p className={getTextClass(isActive)}>Питание</p>
                             </>
                         )}
@@ -48,8 +48,8 @@ export default function Navbar() {
                     <NavLink to="/cart" className={({ isActive }) => getBlockClass(isActive)}>
                         {({ isActive }) => (
                             <>
-                                <PiShoppingCartSimple className={getIconClass(isActive)} />
-                                <p className={getTextClass(isActive)}>Корзинка</p>
+                                <PiFootballHelmet className={getIconClass(isActive)} />
+                                <p className={getTextClass(isActive)}>Аксессуары    </p>
                             </>
                         )}
                     </NavLink>

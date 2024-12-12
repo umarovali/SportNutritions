@@ -1,19 +1,5 @@
-<svg width="308" height="308" viewBox="0 0 308 308" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_d_99_92)">
-<rect x="4" width="300" height="300" rx="10" fill="#F3F3F3"/>
-<path d="M188.792 144.687V181.5C188.792 182.528 188.26 183.513 187.315 184.24C186.37 184.967 185.087 185.375 183.75 185.375H113.167C111.83 185.375 110.547 184.967 109.602 184.24C108.656 183.513 108.125 182.528 108.125 181.5V127.25C108.125 126.222 108.656 125.237 109.602 124.51C110.547 123.783 111.83 123.375 113.167 123.375H159.459" stroke="#A19E9E" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M178.708 123.375H198.875M188.779 115.228V130.728M123.25 164.121L138.375 148.562L145.937 154.375L154.76 143.719L173.667 164.121H123.25Z" stroke="#A19E9E" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<defs>
-<filter id="filter0_d_99_92" x="0" y="0" width="308" height="308" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="4"/>
-<feGaussianBlur stdDeviation="2"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_99_92"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_99_92" result="shape"/>
-</filter>
-</defs>
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="300" height="300" rx="10" fill="#F3F3F3"/>
+<path d="M184.792 144.687V181.5C184.792 182.528 184.26 183.513 183.315 184.24C182.37 184.967 181.087 185.375 179.75 185.375H109.167C107.83 185.375 106.547 184.967 105.602 184.24C104.656 183.513 104.125 182.528 104.125 181.5V127.25C104.125 126.222 104.656 125.237 105.602 124.51C106.547 123.783 107.83 123.375 109.167 123.375H155.459" stroke="#A19E9E" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M174.708 123.375H194.875M184.779 115.228V130.728M119.25 164.121L134.375 148.562L141.937 154.375L150.76 143.719L169.667 164.121H119.25Z" stroke="#A19E9E" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
