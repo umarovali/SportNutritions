@@ -1,5 +1,3 @@
-# views.py
-
 from rest_framework import generics
 from .models import Nutritions, Brand, Category, Goals
 from rest_framework.permissions import IsAuthenticated, AllowAny

@@ -45,7 +45,7 @@ export default function Navbar() {
                     </NavLink>
                 </li>
                 <li className="w-[25%] flex justify-center">
-                    <NavLink to="/cart" className={({ isActive }) => getBlockClass(isActive)}>
+                    <NavLink to="/accesories" className={({ isActive }) => getBlockClass(isActive)}>
                         {({ isActive }) => (
                             <>
                                 <PiFootballHelmet className={getIconClass(isActive)} />

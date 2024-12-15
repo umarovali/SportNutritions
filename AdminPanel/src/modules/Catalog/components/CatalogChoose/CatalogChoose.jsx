@@ -12,7 +12,7 @@ export default function CatalogChoose() {
                     <CatalogChooseItem Foto={Foto1} text={"Категории"} link="/category" />
                     <CatalogChooseItem Foto={Foto2} text={"Бренды"} link="/brand" />
                     <CatalogChooseItem Foto={Foto3} text={"Цели"} link="/goals" />
-                    {/* <CatalogChooseItem Foto={Foto4} text={"Аксесуары"} link="/brand" /> */}
+                    <CatalogChooseItem Foto={Foto4} text={"Аксесуары"} link="/access-category" />
                 </ul>
             </div>
         </section>

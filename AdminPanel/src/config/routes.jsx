@@ -1,6 +1,7 @@
-import Nutritions from "../modules/Nutritions";
+import Nutritions from "../modules/Product/Nutritions";
 import Catalog from "../modules/Catalog";
 import { Navigate } from "react-router-dom";
+import Accesories from "../modules/Product/Accesories";
 
 export const routes = () => {
     return [
@@ -18,6 +19,11 @@ export const routes = () => {
             id: 3,
             path: "/catalog/*", 
             element: <Catalog />,
+        },
+        {
+            id: 4,
+            path: "/accesories/*", 
+            element: <Accesories />,
         },
     ];
 };
