@@ -1,14 +1,48 @@
-import React from 'react'
+export default function CatalogFilter({ activeFilter, setActiveFilter }) {
 
-export default function CatalogFilter() {
+    const handleFilterClick = (filter) => {
+        if (activeFilter !== filter) {
+            setActiveFilter(filter);
+        }
+    };
+
+    const getClassNames = (filter) => {
+        return `
+            py-[3px] px-[12px] rounded-[15px] border-[1px] font-openSans font-[600] text-[15px] tracking-[1px] cursor-pointer transition-all duration-300 ${activeFilter === filter
+                ? "bg-[#CF2516] border-[#1E1E1E] text-[#fff]"
+                : "bg-[#cf251600] border-[#1e1e1e00] text-[#1E1E1E]"
+            }
+        `;
+    };
+
     return (
-        <section className='px-[16px] mt-[16px]'>
-                <ul className='flex gap-[10px] overflow-x-auto'>
-                    <li className='py-[3px] px-[12px] bg-[#CF2516] rounded-[15px] border-[1px] border-[#1E1E1E] font-openSans font-[600] text-[15px] text-[#fff] tracking-[1px] cursor-pointer'>Категории</li>
-                    <li className='py-[3px] px-[12px] bg-[#cf251600] rounded-[15px] border-[1px] border-[#1e1e1e00] font-openSans font-[600] text-[15px] text-[##1E1E1E] tracking-[1px] cursor-pointer'>Бренды</li>
-                    <li className='py-[3px] px-[12px] bg-[#cf251600] rounded-[15px] border-[1px] border-[#1e1e1e00] font-openSans font-[600] text-[15px] text-[#1E1E1E] tracking-[1px] cursor-pointer'>Аксессуары</li>
-                    <li className='py-[3px] px-[12px] bg-[#cf251600] rounded-[15px] border-[1px] border-[#1e1e1e00] font-openSans font-[600] text-[15px] text-[#1E1E1E] tracking-[1px] cursor-pointer'>Цели</li>
-                </ul>
+        <section className="px-[16px] mt-[16px]">
+            <ul className="flex gap-[10px] overflow-x-auto">
+                <li
+                    onClick={() => handleFilterClick("category")}
+                    className={getClassNames("category")}
+                >
+                    Категории
+                </li>
+                <li
+                    onClick={() => handleFilterClick("brand")}
+                    className={getClassNames("brand")}
+                >
+                    Бренды
+                </li>
+                <li
+                    onClick={() => handleFilterClick("access/category")}
+                    className={getClassNames("access/category")}
+                >
+                    Аксессуары
+                </li>
+                <li
+                    onClick={() => handleFilterClick("goals")}
+                    className={getClassNames("goals")}
+                >
+                    Цели
+                </li>
+            </ul>
         </section>
-    )
+    );
 }

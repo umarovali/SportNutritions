@@ -44,6 +44,7 @@ export default function ProductAddUploadFoto({ images, setImages }) {
                         alt={`Фото ${index + 1}`}
                     />
                     <button
+                        type="button"
                         onClick={() => handleRemoveImage(index)}
                         className="absolute top-[-4px] right-[-4px] bg-red-500 text-white rounded-[50%] text-[14px] box-border p-[4px]"
                     >

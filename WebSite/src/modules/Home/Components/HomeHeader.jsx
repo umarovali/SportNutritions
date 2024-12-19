@@ -3,7 +3,7 @@ import Avatar from "../../../assets/icons/profile.svg";
 
 export default function HomeHeader() {
     return (
-        <header>
+        <header className="fixed left-0 top-0 w-[100%] bg-[#fff8] z-[1000] pb-[10px]">
             <div className="container">
                 <div className='flex justify-between items-center pt-[10px]'>
                     <div className="flex items-center gap-[10px]">
