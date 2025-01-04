@@ -17,14 +17,16 @@ class UserManager(BaseUserManager):
         user = self.create_user(username=username, password=password, number=number)
         user.is_admin = True
         user.is_staff = True
+        user.is_superuser = True 
         user.save(using=self._db)
         return user
 
 class User(AbstractBaseUser):
     username = models.CharField(max_length=50, unique=True)
-    number = models.CharField(max_length=9, unique=True)  # Добавлено unique=True
+    number = models.CharField(max_length=9, unique=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
 
     objects = UserManager()
 

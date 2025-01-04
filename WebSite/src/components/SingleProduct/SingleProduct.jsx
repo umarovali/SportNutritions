@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import useProduct from "../../store/useProduct";
 import { useEffect, useState } from "react";
 import api from "../../utils/axiosInstance";
 import SingleFoto from "./Components/SingleFoto";

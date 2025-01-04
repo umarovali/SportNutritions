@@ -13,9 +13,9 @@ export default function HomeProducts({ requestText }) {
     if (isError) return <div className="absolute left-0 top-[-60px] bg-[#fff] w-[100%] h-[100%]">{isError}</div>
 
     return (
-        <section>
+        <section className="">
             <div className="container">
-                <ul className='grid grid-cols-2 gap-x-[15px] mt-[16px] mb-[100px]'>
+                <ul className='grid grid-cols-2 gap-x-[15px] mt-[16px] mb-[100px] -z-[1000]'>
                     {data?.map((item) => (
                         <ProductItem requestText={requestText} key={item.id} item={item} />
                     ))}

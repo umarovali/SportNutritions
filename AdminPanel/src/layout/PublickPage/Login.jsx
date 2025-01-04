@@ -18,6 +18,8 @@ export default function Login() {
         }
         api.post("http://127.0.0.1:8000/api/token/", formData)
             .then((token) => {
+                console.log(token.data);
+                
                 setToken(token.data.access);
                 toast.success("Вход выполнен успешно!")
                 elUserName.current.value = ""

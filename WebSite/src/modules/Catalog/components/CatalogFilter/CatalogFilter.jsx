@@ -37,8 +37,8 @@ export default function CatalogFilter({ activeFilter, setActiveFilter }) {
                     Аксессуары
                 </li>
                 <li
-                    onClick={() => handleFilterClick("goals")}
-                    className={getClassNames("goals")}
+                    onClick={() => handleFilterClick("goal")}
+                    className={getClassNames("goal")}
                 >
                     Цели
                 </li>

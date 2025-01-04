@@ -1,4 +1,5 @@
 from rest_framework import generics
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Nutritions, Brand, Category, Goals
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .serializers import (
@@ -17,6 +18,8 @@ class NutritionsListView(generics.ListAPIView):
     queryset = Nutritions.objects.all()
     serializer_class = NutritionsSerializer
     permission_classes = [AllowAny]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['goal', 'brand', 'category'] 
 
 class NutritionsDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Nutritions.objects.all()
