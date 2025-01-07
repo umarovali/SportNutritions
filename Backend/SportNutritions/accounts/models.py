@@ -1,41 +1,39 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
-from django.core.exceptions import ValidationError
+from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.models import AbstractUser
 
-class UserManager(BaseUserManager):
-    def create_user(self, username, password=None, number=None):
-        if not username:
-            raise ValueError("Пользователь должен иметь имя пользователя")
-        if not number:
-            raise ValueError("Пользователь должен иметь номер телефона")
-        user = self.model(username=username, number=number)
+class CustomUserManager(BaseUserManager):
+    def create_user(self, phone_number, password, **extra_fields):
+        if not phone_number:
+            raise ValueError("The Phone Number field must be set.")
+        user = self.model(phone_number=phone_number, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, password=None, number=None):
-        user = self.create_user(username=username, password=password, number=number)
-        user.is_admin = True
-        user.is_staff = True
-        user.is_superuser = True 
-        user.save(using=self._db)
-        return user
+    def create_superuser(self, phone_number, username, password, **extra_fields):
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
 
-class User(AbstractBaseUser):
-    username = models.CharField(max_length=50, unique=True)
-    number = models.CharField(max_length=9, unique=True)
-    is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
-    is_superuser = models.BooleanField(default=False)
+        if extra_fields.get("is_staff") is not True:
+            raise ValueError("Superuser has to have is_staff set to True.")
+        if extra_fields.get("is_superuser") is not True:
+            raise ValueError("Superuser has to have is_superuser set to True.")
 
-    objects = UserManager()
+        if not username:
+            raise ValueError("The Username field must be set for superuser.")
 
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['number']
-    
-    def clean(self):
-        if User.objects.filter(number=self.number).exists():
-            raise ValidationError("Этот номер телефона уже используется.")
+        return self.create_user(phone_number=phone_number, username=username, password=password, **extra_fields)
+
+class User(AbstractUser):
+    phone_number = models.CharField(max_length=9, unique=True)
+    email = None  # Убираем email, если не требуется
+    username = models.CharField(max_length=45, unique=True)
+
+    USERNAME_FIELD = 'phone_number' 
+    REQUIRED_FIELDS = ['username']  
+
+    objects = CustomUserManager()
 
     def __str__(self):
-        return self.username
+        return self.phone_number

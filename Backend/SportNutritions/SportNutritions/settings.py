@@ -26,6 +26,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,7 +44,10 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'accounts',
+    'rest_framework.authtoken',
 ]
+
+AUTH_USER_MODEL="accounts.User"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
