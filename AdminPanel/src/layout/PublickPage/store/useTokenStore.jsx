@@ -1,13 +1,13 @@
 import { create } from "zustand";
 
 const useTokenStore = create((set) => ({
-    token: JSON.parse(localStorage.getItem("refresh_token")) || "",
+    token: JSON.parse(localStorage.getItem("access_token")) || "",
     setToken: (value) => {
         if (value) {
-            localStorage.setItem("refresh_token", JSON.stringify(value));
+            localStorage.setItem("access_token", JSON.stringify(value));
             set({ token: value });
         } else {
-            localStorage.removeItem("refresh_token");
+            localStorage.removeItem("access_token");
             set({ token: "" });
         }
     }

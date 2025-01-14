@@ -7,18 +7,57 @@ from django.contrib.auth import authenticate
 from .tokens import create_jwt_pair_for_user
 from .serializers import SingUpSerializers
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.models import User
+
+class AllUsersView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        if not request.user.is_superuser:
+            return Response(
+                {"message": "Access denied. Only superusers can view this information."},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        
+        # Получение всех пользователей
+        users = User.objects.all()
+        serializer = SingUpSerializers(users, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 class MeView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        user = request.user  # Текущий пользователь на основе токена
+        user = request.user  
         serializer = SingUpSerializers(user)
         return Response(serializer.data)
 
+    def put(self, request):
+        user = request.user
+        serializer = SingUpSerializers(user, data=request.data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                {"message": "User updated successfully", "data": serializer.data}, 
+                status=status.HTTP_200_OK
+            )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request):
+        user = request.user
+        serializer = SingUpSerializers(user, data=request.data, partial=True)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                {"message": "User partially updated successfully", "data": serializer.data}, 
+                status=status.HTTP_200_OK
+            )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class SingUpView(generics.GenericAPIView):
     serializer_class = SingUpSerializers
-    permission_classes = [permissions.AllowAny]
 
     def post(self, request: Request):
         serializer = self.serializer_class(data=request.data)
@@ -34,8 +73,6 @@ class SingUpView(generics.GenericAPIView):
 
 
 class LoginView(APIView):
-    permission_classes = []
-
     def post(self, request: Request):
         phone_number = request.data.get('phone_number')
         password = request.data.get('password')

@@ -9,6 +9,7 @@ export default {
       fontFamily: {
         golos: ['Golos Text', 'sans-serif'],
         openSans: ['Open Sans', 'sans-serif'],
+        grechen: ['Grechen Fuemen', 'cursive'],
       },
     },
     container: {

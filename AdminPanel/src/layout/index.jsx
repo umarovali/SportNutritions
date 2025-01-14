@@ -6,8 +6,8 @@ export default function Layout() {
     const token = useTokenStore((state) => state.token);
 
     if (!token) {
-        return <Login />
+        return <Login />;
     }
 
-    return <PrivatePage />
+    return <PrivatePage />;
 }

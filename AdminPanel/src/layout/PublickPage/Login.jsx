@@ -7,23 +7,31 @@ import useTokenStore from "./store/useTokenStore";
 
 export default function Login() {
     const setToken = useTokenStore((state) => state.setToken);
-    const elUserName = useRef();
+    const elPhoneNumber = useRef();
     const elPassword = useRef();
+
+    const handlePhoneInput = (e) => {
+        e.target.value = e.target.value.replace(/\D/g, '').slice(0, 9);
+    };
 
     const handleSubmit = (evt) => {
         evt.preventDefault()
         const formData = {
-            username: elUserName.current.value,
+            phone_number: elPhoneNumber.current.value,
             password: elPassword.current.value,
         }
-        api.post("http://127.0.0.1:8000/api/token/", formData)
+        api.post("/user/login/", formData)
             .then((token) => {
-                console.log(token.data);
-                
-                setToken(token.data.access);
+                setToken(token.data.token.access);
                 toast.success("Вход выполнен успешно!")
-                elUserName.current.value = ""
+                elPhoneNumber.current.value = ""
                 elPassword.current.value = ""
+            })
+            .catch((err) => {
+                switch (err.message) {
+                    case "Invalid phone number or password":
+                        toast.error("Ошибка при заполнение поля!")
+                }
             })
     }
 
@@ -34,8 +42,11 @@ export default function Login() {
 
             <form onSubmit={handleSubmit} className="relative px-[40px] pt-[30%] flex flex-col gap-[20px]">
                 <div className="flex flex-col gap-[10px]">
-                    <label className="font-openSans relative text-[#ffffffcf] text-[18px] tracking-[1px] font-extrabold">Имя</label>
-                    <input ref={elUserName} className="w-[100%] h-[45px] bg-transparent border-[1px] border-[#fff] rounded-[10px] pl-[10px] font-golos text-[#fff] text-[16px]" placeholder="Имя..." type="text" />
+                    <label className="font-openSans relative text-[#ffffffcf] text-[18px] tracking-[1px] font-extrabold">Номер телефона</label>
+                    <div className="flex gap-[0px]">
+                        <div className="flex items-center px-[8px] h-[45px] bg-transparent border-[1px] border-[#fff] rounded-[10px] font-golos rounded-r-[0px] text-[#fff] text-[16px]">+996</div>
+                        <input ref={elPhoneNumber} onInput={handlePhoneInput} className="w-[100%] h-[45px] bg-transparent border-[1px] border-l-0 border-[#fff] rounded-r-[10px] pl-[10px] font-golos text-[#fff] text-[16px]" placeholder="Номер телефона..." type="text" />
+                    </div>
                 </div>
                 <div className="flex flex-col gap-[10px]">
                     <label className="font-openSans relative text-[#ffffffcf] text-[18px] tracking-[1px] font-extrabold">Пароль</label>

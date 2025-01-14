@@ -23,7 +23,7 @@ urlpatterns = [
     path('category/<int:pk>/', CategoryDetailView.as_view(), name='category-detail'),  
 
     # Goals URLs
-    path('goal/', GoalsListView.as_view(), name='goals-list'),
-    path('goal/create/', GoalsCreateView.as_view(), name='goals-create'),
-    path('goal/<int:pk>/', GoalsDetailView.as_view(), name='goals-detail'),
+    path('goals/', GoalsListView.as_view(), name='goals-list'),
+    path('goals/create/', GoalsCreateView.as_view(), name='goals-create'),
+    path('goals/<int:pk>/', GoalsDetailView.as_view(), name='goals-detail'),
 ]
