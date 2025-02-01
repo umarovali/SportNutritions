@@ -3,10 +3,11 @@ from .views import (
     NutritionsCreateView, NutritionsListView, NutritionsDetailView,
     BrandCreateView, BrandListView, BrandDetailView,
     CategoryCreateView, CategoryListView, CategoryDetailView,
-    GoalsCreateView, GoalsListView, GoalsDetailView
+    GoalsCreateView, GoalsListView, GoalsDetailView,CommonSearchView
 )
 
 urlpatterns = [
+    path('search/', CommonSearchView.as_view(), name='common-search'),
     # Nutritions URLs
     path('nutrition/', NutritionsListView.as_view(), name='nutrition-list'),
     path('nutrition/create/', NutritionsCreateView.as_view(), name='nutrition-create'),

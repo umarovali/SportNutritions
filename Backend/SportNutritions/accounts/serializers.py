@@ -16,5 +16,10 @@ class SingUpSerializers(serializers.ModelSerializer):
         user = super().create(validated_data)
         user.set_password(password)
         user.save()
-        Token.objects.create(user=user)
+        try:
+            Token.objects.create(user=user)
+        except Exception as e:
+            user.delete() 
+            raise serializers.ValidationError(f"Error creating user: {str(e)}")
+
         return user

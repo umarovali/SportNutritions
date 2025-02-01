@@ -1,6 +1,10 @@
 from rest_framework import generics
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Nutritions, Brand, Category, Goals
+from accessories.models import Accessories
+from accessories.serializers import AccessoriesSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .serializers import (
     NutritionsSerializer, 
@@ -8,6 +12,26 @@ from .serializers import (
     CategorySerializer, 
     GoalsSerializer, 
 )
+
+class CommonSearchView(APIView):
+    def get(self, request, *args, **kwargs):
+        query = request.GET.get('q', '')
+        if query:
+            # Поиск в Accessories
+            accessories = Accessories.objects.filter(name__icontains=query)
+            accessories_serializer = AccessoriesSerializer(accessories, many=True)
+
+            # Поиск в Nutrition
+            nutrition = Nutritions.objects.filter(name__icontains=query)
+            nutrition_serializer = NutritionsSerializer(nutrition, many=True)
+
+            # Формирование ответа
+            return Response({
+                "accessories": accessories_serializer.data,
+                "nutrition": nutrition_serializer.data,
+            })
+
+        return Response({"error": "Введите параметр поиска `q`."}, status=400)
 
 class NutritionsCreateView(generics.CreateAPIView):
     queryset = Nutritions.objects.all()

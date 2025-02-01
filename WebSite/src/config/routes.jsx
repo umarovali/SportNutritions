@@ -4,6 +4,7 @@ import Cart from "../modules/Cart/Cart";
 import Profile from "../modules/Profile/Profile";
 import SingleProduct from "../components/SingleProduct/SingleProduct";
 import Products from "../modules/Products/Products";
+import Search from "../modules/Search";
 
 export const routes = () => {
 
@@ -37,6 +38,11 @@ export const routes = () => {
             id: 6,
             path: "/:id",
             element: <SingleProduct />,
+        },
+        {
+            id: 7,
+            path: "/search",
+            element: <Search />,
         },
     ];
 };
