@@ -1,4 +1,6 @@
 from django.db import models
+from django.conf import settings
+from django.contrib.auth.models import User
 
 class Brand(models.Model):
     name = models.CharField(max_length=250)
@@ -38,3 +40,11 @@ class Nutritions(models.Model):
     
     def __str__(self):
         return self.name
+    
+class CartItem(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="nutritions_cart_items")
+    nutritions = models.ForeignKey(Nutritions, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    class Meta:
+        unique_together = ('user', 'nutritions')

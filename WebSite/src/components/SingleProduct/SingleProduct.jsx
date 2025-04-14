@@ -6,6 +6,8 @@ import SingleContent from "./Components/SingleContent";
 import SingleCatalog from "./Components/SingleCatalog";
 import SingleInfo from "./Components/SingleInfo";
 import SingleHeader from "./Components/SingleHeader";
+import SingleCart from "./Components/SingleCart";
+import Products from "../../modules/Products/Products";
 
 export default function SingleProduct({ }) {
     const { id } = useParams()
@@ -19,6 +21,7 @@ export default function SingleProduct({ }) {
             )
     }, [])
 
+
     return (
         <>
             <SingleHeader videoUrl={single?.video} />
@@ -27,6 +30,7 @@ export default function SingleProduct({ }) {
             <SingleCatalog catalog={single} />
             {url === "accessories" ? null :
                 <SingleInfo info={single?.extra_info} />}
+            <SingleCart productid={id} requestText={url} />
         </>
     )
 }

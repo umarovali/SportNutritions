@@ -1,12 +1,12 @@
-import React from 'react'
-import PrivatePage from './layout/PrivatePage'
-import RoutePublick from './layout/PublickPage'
+import { Toaster } from "react-hot-toast";
+import Layout from "./layout"
 
 export default function App() {
 
   return (
     <>
-      <PrivatePage />
+      <Toaster position='top-center' />
+      <Layout />
     </>
   )
 }

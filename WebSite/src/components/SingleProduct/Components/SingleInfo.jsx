@@ -1,7 +1,7 @@
 
 export default function SingleInfo({ info }) {
     return (
-        <div className='px-[16px] py-[10px] pb-[120px]'>
+        <div className='px-[16px] py-[10px]'>
             <h2 className='text-[17px] text-[#1E1E1E] font-semibold font-openSans'>Информация</h2>
             <div className='border-[1px] border-[#1e1e1e] rounded-[5px] mt-[10px]'>
                 <table className='w-full border-[1px] border-[#000] rounded-[8px] overflow-hidden'>

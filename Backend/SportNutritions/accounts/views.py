@@ -8,21 +8,9 @@ from .tokens import create_jwt_pair_for_user
 from .serializers import SingUpSerializers
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
-
-class AllUsersView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request):
-        if not request.user.is_superuser:
-            return Response(
-                {"message": "Access denied. Only superusers can view this information."},
-                status=status.HTTP_403_FORBIDDEN
-            )
-        
-        # Получение всех пользователей
-        users = User.objects.all()
-        serializer = SingUpSerializers(users, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+from django.contrib.auth.hashers import make_password
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth.hashers import make_password
 
 class MeView(APIView):
     permission_classes = [IsAuthenticated]
@@ -34,28 +22,16 @@ class MeView(APIView):
 
     def put(self, request):
         user = request.user
-        serializer = SingUpSerializers(user, data=request.data)
-        
+        data = request.data.copy()
+
+        if "password" in data:
+            data["password"] = make_password(data["password"])
+
+        serializer = SingUpSerializers(user, data=data, partial=True)
         if serializer.is_valid():
             serializer.save()
-            return Response(
-                {"message": "User updated successfully", "data": serializer.data}, 
-                status=status.HTTP_200_OK
-            )
+            return Response({"message": "User data updated successfully", "data": serializer.data}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def patch(self, request):
-        user = request.user
-        serializer = SingUpSerializers(user, data=request.data, partial=True)
-        
-        if serializer.is_valid():
-            serializer.save()
-            return Response(
-                {"message": "User partially updated successfully", "data": serializer.data}, 
-                status=status.HTTP_200_OK
-            )
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 class SingUpView(generics.GenericAPIView):
     serializer_class = SingUpSerializers
 
@@ -70,7 +46,6 @@ class SingUpView(generics.GenericAPIView):
             return Response(data=response, status=status.HTTP_201_CREATED)
 
         return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 class LoginView(APIView):
     def post(self, request: Request):

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import api from "../../utils/axiosInstance";
 import ProductItem from "../../components/ProductItem/ProductItem";
+import { TbMoodEmpty } from "react-icons/tb";
 
 export default function Products() {
     const { filter } = useParams();
@@ -13,13 +14,21 @@ export default function Products() {
 
 
     useEffect(() => {
-        api(`/${filter.length > 20 ? "accessories" : "nutrition"}/?${filter}`)
+        api(`/${filter?.length > 20 ? "accessories" : "nutrition"}/?${filter}`)
             .then(data => setProduct({
                 isLoading: true,
                 isError: false,
                 data: data.data,
             }))
     }, [])
+
+    if (!product.data?.length) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <p className="text-lg font-medium text-gray-500 flex items-center gap-3">Пусто <TbMoodEmpty className="text-[25px] pt-[4px]" /></p>
+            </div>
+        );
+    }
 
     return (
         <>

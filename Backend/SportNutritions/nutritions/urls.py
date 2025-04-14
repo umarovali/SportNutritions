@@ -3,7 +3,7 @@ from .views import (
     NutritionsCreateView, NutritionsListView, NutritionsDetailView,
     BrandCreateView, BrandListView, BrandDetailView,
     CategoryCreateView, CategoryListView, CategoryDetailView,
-    GoalsCreateView, GoalsListView, GoalsDetailView,CommonSearchView
+    GoalsCreateView, GoalsListView, GoalsDetailView,CommonSearchView, CartView, CartItemDeleteView,CartClearView
 )
 
 urlpatterns = [
@@ -27,4 +27,8 @@ urlpatterns = [
     path('goals/', GoalsListView.as_view(), name='goals-list'),
     path('goals/create/', GoalsCreateView.as_view(), name='goals-create'),
     path('goals/<int:pk>/', GoalsDetailView.as_view(), name='goals-detail'),
+    # cart
+    path("nutrition/cart/", CartView.as_view(), name="cart"),
+    path("nutrition/cart/<int:nutrition_id>/", CartItemDeleteView.as_view(), name="cart-item-delete"),
+    path("nutrition/cart/clear/", CartClearView.as_view(), name="cart-clear"),
 ]

@@ -39,6 +39,16 @@ class User(AbstractUser):
     email = None 
     username = models.CharField(max_length=45, unique=True)
 
+    birth_date = models.DateField(null=True, blank=True)  # Поле даты рождения (необязательно)
+    GENDER_CHOICES = [
+        ("male", "Мужчина"),
+        ("female", "Женщина"),
+        ("unspecified", "Не указано"),
+    ]
+    gender = models.CharField(max_length=12, choices=GENDER_CHOICES, default="unspecified")  # Поле пола
+    address = models.TextField(null=True, blank=True)  # Поле адреса (необязательно)
+    avatar = models.TextField(max_length=550)
+
     USERNAME_FIELD = 'phone_number' 
     REQUIRED_FIELDS = ['username']  
 

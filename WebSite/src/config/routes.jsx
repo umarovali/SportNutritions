@@ -1,10 +1,11 @@
 import Home from "../modules/Home";
 import Catalog from "../modules/Catalog";
 import Cart from "../modules/Cart/Cart";
-import Profile from "../modules/Profile/Profile";
+import Profile from "../modules/Profile";
 import SingleProduct from "../components/SingleProduct/SingleProduct";
 import Products from "../modules/Products/Products";
 import Search from "../modules/Search";
+import CatalogResult from "../modules/Catalog/Page/CatalogResult";
 
 export const routes = () => {
 
@@ -22,7 +23,7 @@ export const routes = () => {
         {
             id: 3,
             path: "/catalog/:filter",
-            element: <Products />,
+            element: <CatalogResult />,
         },
         {
             id: 4,

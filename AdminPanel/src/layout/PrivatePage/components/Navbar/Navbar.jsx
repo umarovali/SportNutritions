@@ -22,7 +22,7 @@ export default function Navbar() {
             : "text-[25px]"
 
     return (
-        <nav className="w-full h-[74px] bg-white fixed left-0 bottom-0 border-t-[0.1px] border-[#CF2516] shadow-[0px_-2px_10px_0px_rgba(207,37,22,0.15)] flex items-center">
+        <nav className="w-full h-[74px] bg-white fixed left-0 bottom-0 border-t-[0.1px] border-[#CF2516] shadow-[0px_-2px_10px_0px_rgba(207,37,22,0.15)] flex items-center z-[900]">
             <ul className="flex items-center w-full">
                 <li className="w-[25%] flex justify-center">
                     <NavLink to="/nutritions" className={({ isActive }) => getBlockClass(isActive)}>

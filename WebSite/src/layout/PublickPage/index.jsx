@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import PublickPage from "./Components/PublickPage";
-import Register from "./Components/Register";
-import Login from "./Components/Login";
+import PublickPage from "./Pages/PublickPage";
+import Register from "./Pages/Register";
+import Login from "./Pages/Login";
 
 export default function RoutePublick() {
     return (

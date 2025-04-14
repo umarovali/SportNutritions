@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 export default function CatalogChooseItem({ item, activeFilter }) {
     const { id, image, name } = item;
 
-
-
     return (
         <li>
             <Link to={`/catalog/${activeFilter === "access/category" ? "accessoriesCategroy" : activeFilter}=${id}`} className='w-[100%] h-[120px] border-[1px] border-[#A19E9E] rounded-[15px] flex items-center '>

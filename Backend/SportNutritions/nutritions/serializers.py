@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Nutritions, Brand, Category, Goals
+from .models import Nutritions, Brand, Category, Goals, CartItem
 
 class BrandSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,3 +40,25 @@ class NutritionsSerializer(serializers.ModelSerializer):
             'category', 'category_id', 'goal', 'goal_id',
             'image', 'video', 'description', 'extra_info', 'date_added'
         ]
+
+class CartItemSerializer(serializers.ModelSerializer):
+    nutritions = NutritionsSerializer(read_only=True)
+    nutrition_id = serializers.PrimaryKeyRelatedField(
+        queryset=Nutritions.objects.all(), write_only=True
+    )    
+
+    class Meta:
+        model = CartItem
+        fields = ["id", "user", "nutritions", "nutrition_id", "quantity"]
+        extra_kwargs = {"user": {"read_only": True}}
+
+    def create(self, validated_data):
+        user = self.context["request"].user
+        nutritions = validated_data.pop("nutrition_id")
+        cart_item, created = CartItem.objects.get_or_create(
+            user=user, nutritions=nutritions, defaults={"quantity": validated_data.get("quantity", 1)}
+        )
+        if not created:
+            cart_item.quantity += validated_data.get("quantity", 1)
+            cart_item.save()
+        return cart_item

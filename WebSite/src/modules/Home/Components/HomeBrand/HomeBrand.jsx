@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react';
 import HomeBrandItem from './HomeBrandItem';
-import axios from "axios";
+import useBrand from "../../../../store/useBrand";
 
 export default function HomeBrand() {
-
-    const [brands, setBrands] = useState([]);
+    const { dataBrand, fetchDataBrand } = useBrand();
 
     useEffect(() => {
-        axios("http://127.0.0.1:8000/api/brand/")
-            .then(brands => setBrands(brands.data))
+        fetchDataBrand()
     }, [])
 
     return (
@@ -16,7 +14,7 @@ export default function HomeBrand() {
             <div className="container">
                 <h2 className='font-openSans text-[17px] font-[400] text-[#1E1E1E]'>Б<span className='text-[#CF2516]'>ренды</span></h2>
                 <ul className='flex gap-[10px] mt-[12px] overflow-x-auto '>
-                    {brands.map((item) => (
+                    {dataBrand?.map((item) => (
                         <HomeBrandItem key={item.id} item={item} />
                     ))}
                 </ul>
