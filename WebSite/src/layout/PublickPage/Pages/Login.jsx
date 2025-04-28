@@ -51,7 +51,6 @@ export default function Login() {
     }
 
 
-
     return (
         <div className="bg-[#000] relative w-full h-[100svh]">
             <div className=" inset-0">

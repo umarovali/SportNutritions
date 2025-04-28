@@ -5,12 +5,15 @@ from rest_framework.decorators import APIView
 from rest_framework.request import Request
 from django.contrib.auth import authenticate
 from .tokens import create_jwt_pair_for_user
-from .serializers import SingUpSerializers
+from .serializers import SingUpSerializers, UploadedImageSerializer
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.hashers import make_password
+from .models import UploadedImage
+from rest_framework.parsers import MultiPartParser, FormParser
+
 
 class MeView(APIView):
     permission_classes = [IsAuthenticated]
@@ -65,3 +68,40 @@ class LoginView(APIView):
     def get(self, request: Request):
         content = {"user": str(request.user), "auth": str(request.auth)}
         return Response(data=content, status=status.HTTP_200_OK)
+    
+
+from rest_framework import status, generics
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.response import Response
+from .models import UploadedImage
+from .serializers import UploadedImageSerializer
+
+class UploadImageView(generics.CreateAPIView):
+    queryset = UploadedImage.objects.all()
+    serializer_class = UploadedImageSerializer
+    parser_classes = [MultiPartParser, FormParser]
+
+    def create(self, request, *args, **kwargs):
+        response = super().create(request, *args, **kwargs)
+        if response.status_code == 201:
+            # Генерируем абсолютный URL для загруженного файла
+            file_url = request.build_absolute_uri(response.data['image'])
+            return Response({
+                'success': True,
+                'image_url': file_url
+            }, status=status.HTTP_201_CREATED)
+        return response
+
+    queryset = UploadedImage.objects.all()
+    serializer_class = UploadedImageSerializer
+    parser_classes = [MultiPartParser, FormParser]
+
+    def create(self, request, *args, **kwargs):
+        response = super().create(request, *args, **kwargs)
+        if response.status_code == 201:
+            image_url = request.build_absolute_uri(response.data['image'])
+            return Response({
+                'success': True,
+                'image_url': image_url
+            }, status=status.HTTP_201_CREATED)
+        return response

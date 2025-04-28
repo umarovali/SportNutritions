@@ -16,3 +16,7 @@
 #app {
     height: 100%;
 }
+
+body {
+    font-family: 'Poppins', sans-serif;
+}

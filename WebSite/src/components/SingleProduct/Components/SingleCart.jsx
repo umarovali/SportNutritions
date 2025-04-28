@@ -3,6 +3,7 @@ import { BsCartDash } from "react-icons/bs";
 import useCartProduct from "../../../store/useCartProduct";
 import { useEffect } from "react";
 import api from "../../../utils/axiosInstance";
+import { toast } from "react-hot-toast";
 
 export default function SingleCart({ productid, requestText }) {
     const { dataCartProduct, fetchCartProduct } = useCartProduct();
@@ -12,12 +13,11 @@ export default function SingleCart({ productid, requestText }) {
         fetchCartProduct(requestText);
     }, []);
 
+    const newRequestText = requestText === "nutrition" ? "nutritions" : "accessories"
 
-    const key = requestText;
-    const inCartItem = dataCartProduct?.find(item => item?.nutritions?.id == productid);
+
+    const inCartItem = dataCartProduct?.find(item => item?.[newRequestText]?.id == productid);
     const isInCart = Boolean(inCartItem);
-
-    console.log(isInCart);
 
 
 
@@ -34,17 +34,17 @@ export default function SingleCart({ productid, requestText }) {
 
         if (isInCart) {
             api.delete(`${url}${productid}/`, { headers })
-                .then(() => fetchCartProduct(requestText))
+                .then(() => fetchCartProduct(requestText), toast.error("Успешно удалено!"))
                 .catch(err => console.error("Ошибка удаления:", err));
         } else {
             api.post(url, { [productKey]: productid, quantity: 1 }, { headers })
-                .then(() => fetchCartProduct(requestText))
+                .then(() => fetchCartProduct(requestText), toast.success("Успешно добавлено!"))
                 .catch(err => console.error("Ошибка добавления:", err));
         }
     };
 
     return (
-        <section className="mb-[200px] mt-[20px]">
+        <section className="mt-[20px] fixed left-[50%] bottom-[85px] z-40 w-[85%] translate-x-[-50%]">
             <div className="container">
                 <button
                     onClick={handleToggleCart}

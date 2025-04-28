@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
-from .models import User
+from .models import User, UploadedImage
 
 class SingUpSerializers(serializers.ModelSerializer):
     phone_number = serializers.CharField(max_length=15)
@@ -28,3 +28,11 @@ class SingUpSerializers(serializers.ModelSerializer):
             raise serializers.ValidationError(f"Error creating user: {str(e)}")
 
         return user
+    
+    from rest_framework import serializers
+from .models import UploadedImage
+
+class UploadedImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UploadedImage
+        fields = ['id', 'image', 'uploaded_at']

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import FotoBg from "../../../assets/images/LoginFoto.png";
 import { PiArrowBendDoubleUpRightFill } from "react-icons/pi";
 
-export default function PublickPage() {
+export default function PublickPage({ setShow }) {
     return (
         <div className="relative w-full h-[100svh] bg-black">
             <div className=" inset-0">
@@ -21,11 +21,9 @@ export default function PublickPage() {
                 <p className="font-openSans text-[#dcdcdc] text-[18px] tracking-[2px] mt-8 leading-relaxed">
                     Мы предлагаем широкий выбор спортивного питания, одежды и аксессуаров для вашего активного образа жизни. Найдите всё необходимое для тренировок в одном месте!
                 </p>
-                <button className="font-golos space-y-4 mt-[24px]  border-b-[1px] border-b-[#ffffffcf] px-[15px] text-[#ffffffcf] text-[18px] tracking-[1px] text-center font-bold">
-                    <Link to={"/register"} className="flex justify-center items-center gap-[10px]">
-                        Начать
-                        <PiArrowBendDoubleUpRightFill className="text-[21px]" />
-                    </Link>
+                <button onClick={() => setShow(false)} className="font-golos space-y-4 mt-[24px] flex justify-center items-center gap-[10px]  border-b-[1px] border-b-[#ffffffcf] px-[15px] text-[#ffffffcf] text-[18px] tracking-[1px] text-center font-bold">
+                    Начать
+                    <PiArrowBendDoubleUpRightFill className="text-[21px]" />
                 </button>
             </div>
         </div>

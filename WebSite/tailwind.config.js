@@ -7,6 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        popins: ['Poppins', 'ui-sans-serif', 'system-ui'],
         golos: ['Golos Text', 'sans-serif'],
         openSans: ['Open Sans', 'sans-serif'],
         grechen: ['Grechen Fuemen', 'cursive'],
@@ -17,7 +18,7 @@ export default {
       padding: '16px',
       screens: {
         DEFAULT: '100%',
-      },
+      }, 
     },
   },
   plugins: [],

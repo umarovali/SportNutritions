@@ -106,7 +106,7 @@ export default function Register() {
 
                         <p className="font-golos text-[13px] text-white">
                             Уже есть аккаунт?{" "}
-                            <Link to="/login" className="underline font-medium text-white">
+                            <Link to="/" className="underline font-medium text-white">
                                 Войдите
                             </Link>, чтобы <br /> продолжить.
                         </p>
