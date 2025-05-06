@@ -84,7 +84,6 @@ class UploadImageView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
         if response.status_code == 201:
-            # Генерируем абсолютный URL для загруженного файла
             file_url = request.build_absolute_uri(response.data['image'])
             return Response({
                 'success': True,

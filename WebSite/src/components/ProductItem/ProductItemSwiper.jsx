@@ -14,7 +14,7 @@ function ProductItemSwiper({ images }) {
             spaceBetween={30}
             centeredSlides={true}
             autoplay={{
-                delay: Math.random() * 3000 + 1500, 
+                delay: Math.random() * 3000 + 1500,
                 disableOnInteraction: false,
             }}
             loop={true}
