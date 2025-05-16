@@ -1,6 +1,6 @@
 import { TbAdjustments } from "react-icons/tb";
 import { CiSearch } from "react-icons/ci";
-import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ModalFilter from "./ModalFilter";
 import useSearchValue from "./Store/useSearchValue";

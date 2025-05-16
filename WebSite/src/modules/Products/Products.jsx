@@ -24,7 +24,7 @@ export default function Products() {
             .then(data => setProduct({
                 isLoading: false,
                 isError: false,
-                data: shuffleArray(data.data),  // Перемешиваем данные перед сохранением в state
+                data: shuffleArray(data.data),  
             }))
             .catch(error => {
                 setProduct({

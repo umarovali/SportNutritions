@@ -48,7 +48,7 @@ export default function CartModal({ modal, setModal }) {
                 const message = `Ваш заказ успешно оформлен!\n${imageUrl}`;
                 const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, "_blank");
-            })
+            })  
             .catch(error => {
                 console.error("Upload failed:", error);
             });

@@ -12,10 +12,10 @@ export default function ProfileBg() {
                     <h3 className="text-[24px] font-[400] font-golos text-[#1e1e1e]">#Сервис</h3>
 
                     <ul className="pl-[14px] pt-[10px] flex flex-col gap-[12px] pb-[5px]">
-                        <li className="flex items-center gap-[20px] text-[#7A7A7A] text-[22px] font-[400] cursor-pointer hover:text-[#636363] hover:pl-[8px] duration-200"><FaMapMarkerAlt className="text-[32px]" /> Аддрес магазина</li>
+                        <li><Link className="flex items-center gap-[20px] text-[#7A7A7A] text-[22px] font-[400] cursor-pointer hover:text-[#636363] hover:pl-[8px] duration-200" to={"/profile/address-shop"}><FaMapMarkerAlt className="text-[32px]" />Аддрес магазина</Link></li>
                         <li><Link className="flex items-center gap-[20px] text-[#7A7A7A] text-[22px] font-[400] cursor-pointer hover:text-[#636363] hover:pl-[8px] duration-200" to={"/profile/social-set"}><IoShareSocial className="text-[32px]" />Cоциальные сети</Link></li>
-                        <li className="flex items-center gap-[20px] text-[#7A7A7A] text-[22px] font-[400] cursor-pointer hover:text-[#636363] hover:pl-[8px] duration-200"><RiShareForwardFill className="text-[32px]" /> О приложении</li>
-                        <li className="flex items-center gap-[20px] text-[#7A7A7A] text-[22px] font-[400] cursor-pointer hover:text-[#636363] hover:pl-[8px] duration-200"><MdOutlineSupportAgent className="text-[32px]" /> Служба поддержки</li>
+                        <li><Link className="flex items-center gap-[20px] text-[#7A7A7A] text-[22px] font-[400] cursor-pointer hover:text-[#636363] hover:pl-[8px] duration-200" to={"/profile/about-app"}><RiShareForwardFill className="text-[32px]" />О приложении</Link></li>
+                        <li><Link className="flex items-center gap-[20px] text-[#7A7A7A] text-[22px] font-[400] cursor-pointer hover:text-[#636363] hover:pl-[8px] duration-200" to={"/profile/help-desk"}><MdOutlineSupportAgent className="text-[32px]" />Служба поддержки</Link></li>
                     </ul>
                 </div>
             </div>
